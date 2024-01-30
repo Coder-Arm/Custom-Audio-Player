@@ -93,7 +93,7 @@ const AudioPlayer = () => {
     <>
     <img className='fixed top-0 left-0 z-[-100] w-[100%] h-[100%] object-cover blur-md' src={audioObj[currIdx].imgSrc} alt='music-pic'/>
     
-    <div className="w-[300px] h-[400px] shadow-xl rounded-md flex flex-col p-6 bg-blue-200 gap-2">
+    <div className="w-[300px] h-[420px] shadow-xl rounded-md flex flex-col p-6 bg-blue-200 gap-2">
     
     <img className='rounded-md h-[62%] object-cover' src={audioObj[currIdx].imgSrc} alt="music-pic"/>
     <div className='flex justify-between'>
