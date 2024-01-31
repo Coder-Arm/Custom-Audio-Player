@@ -23,6 +23,29 @@ const AudioPlayer = () => {
     },[currIdx])
 
     useEffect(() => {
+      const handleKeyDown = (event) => {
+        if (event.key === ' ') {
+          handlePlayPause();
+        }
+        else if(event.key === 'm'){
+          handleVolume()
+        }
+        else if(event.key === 'ArrowLeft'){
+          handlePrev()
+        }
+        else if(event.key === 'ArrowRight'){
+          handleNext()
+        }
+      };
+  
+      window.addEventListener('keydown', handleKeyDown);
+  
+      return () => {
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    }, [handlePlayPause,handleVolume,handlePrev,handleNext]);
+
+    useEffect(() => {
        const audio = audioRef.current;
 
        audio.addEventListener('loadedmetadata', () => {
@@ -81,6 +104,7 @@ const AudioPlayer = () => {
     setIsMute(!isMute)
   }
 
+   
   function timeFormatter(time){ 
     const totalMins = Math.floor(time/60)
      const min = totalMins < 10 ? `0${totalMins}` : `${totalMins}`;
@@ -88,7 +112,7 @@ const AudioPlayer = () => {
      const secs =totalSecs < 10 ? `0${totalSecs}` : `${totalSecs}`;
      return min + " : " + secs;
   }
-
+    
   return (
     <>
     <img className='fixed top-0 left-0 z-[-100] w-[100%] h-[100%] object-cover blur-md' src={audioObj[currIdx].imgSrc} alt='music-pic'/>
